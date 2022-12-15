@@ -28,26 +28,10 @@ object Frames {
 
     @JvmStatic
     fun run() {
-        colors = generateGradientHex(Properties.brightness)
+        colors = generateGradientHex(brightness)
         animationFrame()
         settingsFrame()
         height = frameHeight
-    }
-
-    private fun animationFrame() {
-        val frame = JFrame("Thomas Young - Doppelspaltexperiment")
-        frame.preferredSize = Dimension(Properties.frameWidth, frameHeight)
-        frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
-        frame.contentPane.background = Color.BLACK
-        val frameLayout = FlowLayout()
-        frameLayout.vgap = 0
-        frame.layout = frameLayout
-
-        val graphics = Simulation()
-
-        frame.add(graphics)
-        frame.pack()
-        frame.isVisible = true
     }
 
     private fun settingsFrame() {
@@ -63,53 +47,54 @@ object Frames {
         settingsProperty.preferredSize = Dimension(300, 600)
 
         //TEXTS
-        val brightnessTxt = newLabel("Brightness: " + (Properties.brightness + 25))
-        val distanceTxt = newLabel("Space between origins: $space")
-        val lengthToWallTxt = newLabel("Wave decay: $wavedecay")
-        val wavelengthTxt = newLabel("Wavelength: $wavelength")
+        val brightnessLabel = newLabel("Brightness: " + (Properties.brightness + 25))
+        val distanceLabel = newLabel("Space between origins: $space")
+        val wavelifetimeLabel = newLabel("Wave decay: $wavedecay")
+        val wavelengthLabel = newLabel("Wavelength: $wavelength")
 
         val brightnessSlider = newProperty(0, -25, 25, 10, 5) { e ->
             val property = e.source as JSlider
             brightness = -25 + property.value
             colors = generateGradientHex(brightness)
-            brightnessTxt.text = "Brightness: " + (brightness + 25)
+            brightnessLabel.text = "Brightness: " + (brightness + 25)
         }
+
         settingsProperty.add(whiteSpace())
-        settingsProperty.add(brightnessTxt)
+        settingsProperty.add(brightnessLabel)
         settingsProperty.add(whiteSpace())
         settingsProperty.add(brightnessSlider)
 
         val spaceSlider = newProperty(space, 0, 1000, 250, 125) { e ->
             val property = e.source as JSlider
             space = property.value
-            distanceTxt.text = "Space between origins: $space"
+            distanceLabel.text = "Space between origins: $space"
             leftCenter = intArrayOf((width - space) / 2, height)
             rightCenter = intArrayOf((width - space) / 2 + space, height)
             leftOrigin = intArrayOf(leftCenter[0] - 5, leftCenter[1] + 20)
             rightOrigin = intArrayOf(rightCenter[0] - 5, rightCenter[1] + 20)
         }
         settingsProperty.add(whiteSpace())
-        settingsProperty.add(distanceTxt)
+        settingsProperty.add(distanceLabel)
         settingsProperty.add(whiteSpace())
         settingsProperty.add(spaceSlider)
 
         val lengthToWallSlider = newProperty(wavedecay, 50, 1000, 250, 125) { e ->
             val property = e.source as JSlider
             wavedecay = property.value
-            lengthToWallTxt.text = "Wave decay: $wavedecay"
+            wavelifetimeLabel.text = "Wave decay: $wavedecay"
         }
         settingsProperty.add(whiteSpace())
-        settingsProperty.add(lengthToWallTxt)
+        settingsProperty.add(wavelifetimeLabel)
         settingsProperty.add(whiteSpace())
         settingsProperty.add(lengthToWallSlider)
 
         val wavelengthSlider = newProperty(wavelength, 0, 100, 10, 5) { e ->
             val property = e.source as JSlider
             wavelength = property.value
-            wavelengthTxt.text = "Wavelength: $wavelength"
+            wavelengthLabel.text = "Wavelength: $wavelength"
         }
         settingsProperty.add(whiteSpace())
-        settingsProperty.add(wavelengthTxt)
+        settingsProperty.add(wavelengthLabel)
         settingsProperty.add(whiteSpace())
         settingsProperty.add(wavelengthSlider)
 
@@ -117,5 +102,22 @@ object Frames {
         settingsFrame.pack()
         settingsFrame.isVisible = true
     }
+
+    private fun animationFrame() {
+        val animationFrame = JFrame("Thomas Young - Doppelspaltexperiment")
+        animationFrame.preferredSize = Dimension(Properties.frameWidth, frameHeight)
+        animationFrame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
+        animationFrame.contentPane.background = Color.BLACK
+        val frameLayout = FlowLayout()
+        frameLayout.vgap = 0
+        animationFrame.layout = frameLayout
+
+        val graphics = Simulation()
+
+        animationFrame.add(graphics)
+        animationFrame.pack()
+        animationFrame.isVisible = true
+    }
+
 
 }

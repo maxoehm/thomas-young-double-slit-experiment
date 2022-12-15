@@ -2,11 +2,14 @@ package mx
 
 import java.awt.Color
 
+/**
+ * Represents default properties used on application startup
+ */
 object Properties {
 
     var movementSpeed = 0.0
     var wavelength = 30
-    var space = 400 //distance between slits
+    var space = 400
     var width = 2000
     private var graphicsHeight = 500 + 70
     var frameHeight = graphicsHeight + 280

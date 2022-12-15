@@ -4,6 +4,7 @@ This visualisation shows the results of the famous double slit experiment, which
 The visualization displays the interference pattern created when light passes through a pair of slits and strikes a screen. The two beams interfere with each other, producing peaks and troughs in the pattern. The height of the peaks and troughs is determined by the intensity of the light and the distance between the slits.
 
 This visualisation makes it easy to understand the results of this experiment and to explore the effects of changing different parameters. The slits can be adjusted by dragging the sliders and the light intensity can be changed by using the slider.
+
 # Equations & Formulas
 This visualisation uses the following equations to calculate the interference pattern:
 
@@ -42,3 +43,5 @@ The following assumptions are made:
 This visualisation contains the following features:
 + Drag the sliders to adjust the light intensity, position of slits, wavelength and wave decay.
 + Real time display of interference pattern.
+
+![demo.png](demo.png)
